@@ -15,10 +15,7 @@ export function loader() {
 export default function Index() {
   const user = useLoaderData<IUser>()
   return (
-    <div
-      className="dashboard"
-      style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}
-    >
+    <div className="dashboard">
       <Sidebar user={user} />
     </div>
   )

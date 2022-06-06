@@ -1,29 +1,50 @@
+import { useLoaderData } from '@remix-run/react'
 import HeaderColumn from '~/components/HeaderColumn/HeaderColumn'
 
+export function loader() {
+  return [
+    {
+      name: 'Total PNL',
+      field: 'pnl',
+      mainAmount: 20,
+      isPositive: true,
+    },
+    {
+      name: 'Balance',
+      field: 'balance',
+      mainAmount: 100,
+    },
+    {
+      name: '24 Hour Change',
+      field: 'dailyChange',
+      mainAmount: 1,
+      isPositive: true,
+    },
+    {
+      name: 'Weekly Change',
+      field: 'weeklyChange',
+      mainAmount: 2,
+      isPositive: false,
+    },
+  ]
+}
+
 export default function DashboardPnl() {
+  const data = useLoaderData()
   return (
     <div className="pnl-wrapper">
       <table className="header-columns">
-        <HeaderColumn
-          displayOptions={{
-            heading: 'Total PNL',
-          }}
-        />
-        <HeaderColumn
-          displayOptions={{
-            heading: 'Total PNL das dasd asd asd asd asd asd  asd asd asd as',
-          }}
-        />
-        <HeaderColumn
-          displayOptions={{
-            heading: 'Total PNL',
-          }}
-        />
-        <HeaderColumn
-          displayOptions={{
-            heading: 'Total PNL',
-          }}
-        />
+        {data.map((col, i) => {
+          return (
+            <HeaderColumn
+              key={`header-column-${i}`}
+              displayOptions={{
+                heading: col?.name ?? '',
+                data: col,
+              }}
+            />
+          )
+        })}
       </table>
       {/* <table className="header-columns">
         <tr>

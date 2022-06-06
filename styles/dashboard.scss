@@ -22,6 +22,15 @@
       @apply h-full;
       @apply rounded-xl;
       @apply p-6;
+
+      h4 {
+        @apply text-teal-primary;
+        @apply font-extralight;
+      }
+
+      h3 {
+        font-size: 32px;
+      }
     }
   }
 }

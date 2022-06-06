@@ -428,7 +428,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: table;
 }
 
-body, html {
+body,
+html {
+  font-family: 'Kanit', sans-serif;
   --tw-text-opacity: 1;
   color: rgb(205 205 205 / var(--tw-text-opacity));
   height: 100%;
