@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body,
+html {
+  @apply text-gray-light;
+  @apply h-full;
+  @apply bg-dark-primary;
+}

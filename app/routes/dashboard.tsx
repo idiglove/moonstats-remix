@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { Outlet, useLoaderData } from '@remix-run/react'
 
 import styles from './../styles/dashboard.css'
 import Sidebar from './../components/Sidebar/Sidebar'
@@ -12,7 +12,7 @@ export function loader() {
   }
 }
 
-export default function Index() {
+export default function Dashboard() {
   const user = useLoaderData<IUser>()
   return (
     <div
@@ -20,6 +20,7 @@ export default function Index() {
       style={{ fontFamily: 'system-ui, sans-serif', lineHeight: '1.4' }}
     >
       <Sidebar user={user} />
+      <Outlet />
     </div>
   )
 }

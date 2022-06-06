@@ -1,5 +1,33 @@
 .dashboard {
-  @apply bg-black;
-  @apply h-10;
-  @apply w-8;
+  @apply flex;
+  @apply w-full;
+  @apply h-full;
+  @apply bg-dark-primary;
+
+  .pnl-wrapper {
+    @apply min-w-[56.25rem]; // 900px
+    @apply mx-auto;
+    @apply mt-[3.75rem]; //60px
+  }
+
+  .header-columns {
+    @apply table;
+    @apply border-separate;
+    border-spacing: 20px;
+
+    .header-column-wrapper {
+      @apply table-cell;
+      @apply bg-gray-primary;
+      @apply w-[13.125rem]; //210 px
+      @apply h-full;
+      @apply rounded-xl;
+      @apply p-6;
+    }
+  }
+}
+
+.sidebar-wrapper {
+  @apply h-full;
+  @apply w-[250px];
+  @apply bg-dark-secondary;
 }
