@@ -2,10 +2,14 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "remix build",
-    "dev": "concurrently \"npm run sass\" \"remix dev\"",
+    "build": "npm run build:css && remix build",
+    "dev": "npm run sass && concurrently \"npm run sass:watch\" \"npm run postcss:watch\" \"remix dev\"",
     "start": "remix-serve build",
-    "sass": "sass --watch app/:app/"
+    "sass": "sass styles && npm run css:build",
+    "sass:watch": "sass --watch styles",
+    "dev:css": "tailwindcss -w -i ./styles/app.css -o app/styles/app.css",
+    "css:build": "postcss styles/**/*.css --dir app/styles",
+    "postcss:watch": "postcss styles/**/*.css --dir app/styles --watch"
   },
   "dependencies": {
     "@remix-run/node": "^1.5.1",
@@ -19,10 +23,15 @@
     "@remix-run/eslint-config": "^1.5.1",
     "@types/react": "^17.0.45",
     "@types/react-dom": "^17.0.17",
+    "autoprefixer": "^10.4.7",
     "concurrently": "^7.2.1",
     "eslint": "^8.15.0",
+    "postcss": "^8.4.14",
+    "postcss-cli": "^9.1.0",
     "sass": "^1.52.2",
-    "typescript": "^4.6.4"
+    "tailwindcss": "^3.0.24",
+    "typescript": "^4.6.4",
+    "watch": "^1.0.2"
   },
   "engines": {
     "node": ">=14"

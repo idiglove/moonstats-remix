@@ -1,5 +1,8 @@
 .dashboard {
-  background-color: black;
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+    height: 2.5rem;
+    width: 2rem
 }
 
 /*# sourceMappingURL=dashboard.css.map */
