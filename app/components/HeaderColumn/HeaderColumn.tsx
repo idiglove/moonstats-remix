@@ -1,4 +1,6 @@
 import type { FunctionComponent } from 'react'
+import type { ColumnData, DisplayOptions } from './types'
+import Subheading from '../Subheading/Subheading'
 
 const HeaderColumn: FunctionComponent<Props> = ({
   classNames,
@@ -17,6 +19,7 @@ const HeaderColumn: FunctionComponent<Props> = ({
     <div className={classNames?.wrapper ?? 'header-column-wrapper'}>
       <h4>{displayOptions?.heading}</h4>
       <h3>{transformField(displayOptions?.data ?? {})}</h3>
+      <Subheading displayOptions={displayOptions} />
     </div>
   )
 }
@@ -25,16 +28,7 @@ type Props = {
   classNames?: {
     wrapper?: string
   }
-  displayOptions: {
-    heading: string
-    data: ColumnData
-  }
-}
-
-type ColumnData = {
-  field: string
-  mainAmount: number
-  isPositive?: boolean
+  displayOptions: DisplayOptions
 }
 
 export default HeaderColumn

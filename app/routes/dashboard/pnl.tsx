@@ -1,8 +1,10 @@
 import { useLoaderData } from '@remix-run/react'
-import HeaderColumn from '~/components/HeaderColumn/HeaderColumn'
 
-export function loader() {
-  return [
+import HeaderColumn from '~/components/HeaderColumn/HeaderColumn'
+import useFetchCoin from '~/hooks/useFetchCoin'
+
+export const loader = async () => {
+  const pnl = [
     {
       name: 'Total PNL',
       field: 'pnl',
@@ -13,6 +15,7 @@ export function loader() {
       name: 'Balance',
       field: 'balance',
       mainAmount: 100,
+      showSubheading: true,
     },
     {
       name: '24 Hour Change',
@@ -27,10 +30,15 @@ export function loader() {
       isPositive: false,
     },
   ]
+
+  return pnl
 }
 
 export default function DashboardPnl() {
   const data = useLoaderData()
+
+  const btcAmount = useFetchCoin('bitcoin', 'btc')
+
   return (
     <div className="pnl-wrapper">
       <table className="header-columns">
@@ -41,43 +49,13 @@ export default function DashboardPnl() {
               displayOptions={{
                 heading: col?.name ?? '',
                 data: col,
+                subHeadingCurrentAmount: btcAmount,
+                subHeadingCoin: 'btc',
               }}
             />
           )
         })}
       </table>
-      {/* <table className="header-columns">
-        <tr>
-          <td>
-            <HeaderColumn
-              displayOptions={{
-                heading: 'Total PNL',
-              }}
-            />
-          </td>
-          <td>
-            <HeaderColumn
-              displayOptions={{
-                heading: 'Total PNL asdas dasf asd asd asd as',
-              }}
-            />
-          </td>
-          <td>
-            <HeaderColumn
-              displayOptions={{
-                heading: 'Total PNL',
-              }}
-            />
-          </td>
-          <td>
-            <HeaderColumn
-              displayOptions={{
-                heading: 'Total PNL',
-              }}
-            />
-          </td>
-        </tr>
-      </table> */}
     </div>
   )
 }
