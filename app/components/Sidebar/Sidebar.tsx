@@ -6,6 +6,7 @@ const Sidebar: FunctionComponent<Props> = ({ user }) => {
     <div className="sidebar-wrapper">
       <h1>Moon Stats</h1>
       <ul>
+        <li>Dashboard</li>
         <li>{user?.name}</li>
       </ul>
     </div>

@@ -18,7 +18,7 @@ const Subheading: FunctionComponent<Props> = ({ displayOptions }) => {
           ? subHeadingTotal.toFixed(4)
           : '-'
       setText(
-        `(${subHeadingTotalParsed} ${displayOptions.subHeadingCoin.toUpperCase()})`
+        `(${subHeadingTotalParsed} ${displayOptions.subHeadingCoin.toUpperCase()})` // will look like (0.00031) BTC
       )
     }
   }, [

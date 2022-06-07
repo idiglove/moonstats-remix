@@ -12,16 +12,14 @@
   margin-top: 3.75rem;
 }
 .dashboard .header-columns {
-  display: table;
-  border-collapse: separate;
-  border-spacing: 20px;
+  display: flex;
+  gap: 1.25rem;
 }
 .dashboard .header-columns .header-column-wrapper {
-  display: table-cell;
+  flex-grow: 1;
   --tw-bg-opacity: 1;
   background-color: rgb(59 64 78 / var(--tw-bg-opacity));
   width: 13.125rem;
-  height: 100%;
   border-radius: 0.75rem;
   padding: 1.5rem;
 }
@@ -39,6 +37,15 @@
   width: 250px;
   --tw-bg-opacity: 1;
   background-color: rgb(41 45 57 / var(--tw-bg-opacity));
+  padding: 1rem;
+}
+.sidebar-wrapper h1 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  margin-top: 2.5rem;
+}
+.sidebar-wrapper ul {
+  margin-top: 1.5rem;
 }
 
 /*# sourceMappingURL=dashboard.css.map */

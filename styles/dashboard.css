@@ -10,15 +10,13 @@
   @apply mt-[3.75rem];
 }
 .dashboard .header-columns {
-  @apply table;
-  @apply border-separate;
-  border-spacing: 20px;
+  @apply flex;
+  @apply gap-5;
 }
 .dashboard .header-columns .header-column-wrapper {
-  @apply table-cell;
+  @apply flex-grow;
   @apply bg-gray-primary;
   @apply w-[13.125rem];
-  @apply h-full;
   @apply rounded-xl;
   @apply p-6;
 }
@@ -34,6 +32,14 @@
   @apply h-full;
   @apply w-[250px];
   @apply bg-dark-secondary;
+  @apply p-4;
+}
+.sidebar-wrapper h1 {
+  @apply text-4xl;
+  @apply mt-10;
+}
+.sidebar-wrapper ul {
+  @apply mt-6;
 }
 
 /*# sourceMappingURL=dashboard.css.map */
