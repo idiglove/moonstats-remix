@@ -1,12 +1,12 @@
 import type { FunctionComponent } from 'react'
-import type { ColumnData, DisplayOptions } from './types'
+import type { HeaderColumnData, DisplayOptions } from './types'
 import Subheading from '../Subheading/Subheading'
 
 const HeaderColumn: FunctionComponent<Props> = ({
   classNames,
   displayOptions,
 }) => {
-  const transformField = (data: ColumnData) => {
+  const transformField = (data: HeaderColumnData) => {
     if (data?.isPositive) {
       const prefix = data?.isPositive ? '+' : '-'
       return `${prefix}${data?.mainAmount} USD`

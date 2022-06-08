@@ -1,13 +1,14 @@
-export type ColumnData = {
+export type HeaderColumnData = {
   field: string
   mainAmount: number
   isPositive?: boolean
   showSubheading?: boolean
+  name?: string
 }
 
 export type DisplayOptions = {
   heading: string
-  data: ColumnData
+  data: HeaderColumnData
   subHeadingCurrentAmount: number | null
   subHeadingCoin: string
 }
