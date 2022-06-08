@@ -1,8 +1,9 @@
 import { useLoaderData } from '@remix-run/react'
 import { useEffect, useState } from 'react'
 
+import FooterColumns from '~/components/FooterColumns/FooterColumns'
 import HeaderColumn from '~/components/HeaderColumn/HeaderColumn'
-import { HeaderColumnData } from '~/components/HeaderColumn/types'
+import type { HeaderColumnData } from '~/components/HeaderColumn/types'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
 import useFetchCoin from '~/hooks/useFetchCoin'
 
@@ -34,24 +35,47 @@ export const loader = async () => {
     },
   ]
 
-  return pnl
+  const gainers = [
+    {
+      coin: 'WinkLink',
+      amount: 10,
+    },
+    {
+      coin: 'SLP',
+      amount: 15,
+    },
+    {
+      coin: 'KNC',
+      amount: 3,
+    },
+    {
+      coin: 'IDEX',
+      amount: 4,
+    },
+  ]
+
+  return { pnl, gainers }
 }
 
 export default function DashboardPnl() {
+  const { pnl, gainers } = useLoaderData()
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     // ref: https://github.com/vercel/next.js/discussions/17443
     setMounted(true) // we need to hydrate after mounted when using localStorage
   }, [])
-  const data = useLoaderData()
 
   const btcAmount = useFetchCoin('bitcoin', 'btc')
 
+  if (!mounted) {
+    return null
+  }
+
   return (
     <div className="pnl-wrapper">
-      {mounted && (
+      <>
         <div className="header-columns">
-          {data?.map((col: HeaderColumnData, i: number) => {
+          {pnl?.map((col: HeaderColumnData, i: number) => {
             return (
               <HeaderColumn
                 key={`header-column-${i}`}
@@ -65,8 +89,9 @@ export default function DashboardPnl() {
             )
           })}
         </div>
-      )}
-      <PnlLineChart />
+        <PnlLineChart />
+        <FooterColumns gainers={gainers} />
+      </>
     </div>
   )
 }

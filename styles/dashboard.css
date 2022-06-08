@@ -16,6 +16,10 @@
   @apply mt-6;
   @apply rounded-xl;
 }
+.dashboard .column-heading {
+  @apply text-teal-primary;
+  @apply font-extralight;
+}
 .dashboard .header-columns {
   @apply flex;
   @apply gap-5;
@@ -27,12 +31,20 @@
   @apply rounded-xl;
   @apply p-6;
 }
-.dashboard .header-columns .header-column-wrapper h4 {
-  @apply text-teal-primary;
-  @apply font-extralight;
-}
 .dashboard .header-columns .header-column-wrapper h3 {
   font-size: 32px;
+}
+.dashboard .footer-columns-wrapper {
+  @apply flex;
+  @apply gap-5;
+}
+.dashboard .footer-columns-wrapper .footer-column {
+  @apply flex-grow;
+  @apply min-h-[352px];
+  @apply mt-6;
+  @apply p-6;
+  @apply bg-gray-primary;
+  @apply rounded-xl;
 }
 
 .sidebar-wrapper {

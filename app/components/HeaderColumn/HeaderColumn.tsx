@@ -17,7 +17,7 @@ const HeaderColumn: FunctionComponent<Props> = ({
 
   return (
     <div className={classNames?.wrapper ?? 'header-column-wrapper'}>
-      <h4>{displayOptions?.heading}</h4>
+      <h4 className="column-heading">{displayOptions?.heading}</h4>
       <h3>{transformField(displayOptions?.data ?? {})}</h3>
       <Subheading displayOptions={displayOptions} />
     </div>
