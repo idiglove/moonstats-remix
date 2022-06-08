@@ -1,10 +1,10 @@
 import GainersLosers from '../GainersLosers/GainersLosers'
 
-const FooterColumns = () => {
+const FooterColumns = ({ gainers }) => {
   return (
     <div className="footer-columns-wrapper">
-      <GainersLosers />
-      <GainersLosers />
+      <GainersLosers gainers={gainers} />
+      <GainersLosers gainers={gainers} />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 .dashboard {
   @apply flex;
   @apply w-full;
-  @apply h-full;
+  @apply h-auto;
   @apply bg-dark-primary;
 
   .pnl-wrapper {
@@ -43,6 +43,7 @@
   .footer-columns-wrapper {
     @apply flex;
     @apply gap-5;
+    @apply mb-6;
 
     .footer-column {
       @apply flex-grow;
@@ -52,11 +53,16 @@
       @apply bg-gray-primary;
       @apply rounded-xl;
     }
+
+    .tabs {
+      @apply flex;
+      @apply gap-3;
+    }
   }
 }
 
 .sidebar-wrapper {
-  @apply h-full;
+  @apply h-auto;
   @apply w-[250px];
   @apply bg-dark-secondary;
   @apply p-4;
