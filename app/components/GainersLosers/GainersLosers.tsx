@@ -1,14 +1,25 @@
 import type { FunctionComponent } from 'react'
+import type { ICoin } from '~/types/coin.types'
 
-const GainersLosers: FunctionComponent<Props> = ({ gainers }) => {
+import Tabs from '../Tabs/Tabs'
+
+const GainersLosers: FunctionComponent<Props> = ({ data }) => {
+  const contentList = [
+    {
+      name: 'gainers',
+      text: 'Gainers',
+    },
+    {
+      name: 'losers',
+      text: 'Losers',
+    },
+  ]
+
   return (
     <div className="footer-column">
-      <div className="tabs">
-        <h4 className="column-heading">Gainers</h4>
-        <h4 className="column-heading">Losers</h4>
-      </div>
+      <Tabs contentList={contentList} />
       <table>
-        {gainers?.map((gainer, i) => {
+        {data?.gainers?.map((gainer, i) => {
           return (
             <tr key={`${gainer}-${i}`}>
               <td>{gainer?.coin}</td>
@@ -22,10 +33,10 @@ const GainersLosers: FunctionComponent<Props> = ({ gainers }) => {
 }
 
 type Props = {
-  gainers: {
-    coin: string
-    amount: number
-  }[]
+  data: {
+    gainers: ICoin[]
+    losers: ICoin[]
+  }
 }
 
 export default GainersLosers

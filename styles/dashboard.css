@@ -51,6 +51,9 @@
   @apply flex;
   @apply gap-3;
 }
+.dashboard .footer-columns-wrapper .tabs .tab-item {
+  @apply cursor-pointer;
+}
 
 .sidebar-wrapper {
   @apply h-auto;

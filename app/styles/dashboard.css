@@ -57,6 +57,9 @@
   display: flex;
   gap: 0.75rem;
 }
+.dashboard .footer-columns-wrapper .tabs .tab-item {
+  cursor: pointer;
+}
 
 .sidebar-wrapper {
   height: auto;
