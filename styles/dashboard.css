@@ -50,9 +50,31 @@
 .dashboard .footer-columns-wrapper .tabs {
   @apply flex;
   @apply gap-3;
+  @apply mb-4;
 }
 .dashboard .footer-columns-wrapper .tabs .tab-item {
   @apply cursor-pointer;
+}
+.dashboard .footer-columns-wrapper table {
+  @apply w-full;
+}
+.dashboard .footer-columns-wrapper table thead td {
+  @apply text-teal-primary;
+  @apply pb-4;
+  @apply font-extralight;
+}
+.dashboard .footer-columns-wrapper table tbody {
+  @apply bg-dark-table;
+}
+.dashboard .footer-columns-wrapper table tr {
+  @apply border-b-teal-primary;
+  @apply border-b-[1px];
+}
+.dashboard .footer-columns-wrapper table tr:last-child {
+  @apply border-none;
+}
+.dashboard .footer-columns-wrapper table tr td {
+  @apply p-4;
 }
 
 .sidebar-wrapper {

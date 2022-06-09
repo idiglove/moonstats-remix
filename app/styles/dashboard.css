@@ -56,9 +56,34 @@
 .dashboard .footer-columns-wrapper .tabs {
   display: flex;
   gap: 0.75rem;
+  margin-bottom: 1rem;
 }
 .dashboard .footer-columns-wrapper .tabs .tab-item {
   cursor: pointer;
+}
+.dashboard .footer-columns-wrapper table {
+  width: 100%;
+}
+.dashboard .footer-columns-wrapper table thead td {
+  --tw-text-opacity: 1;
+  color: rgb(0 198 189 / var(--tw-text-opacity));
+  padding-bottom: 1rem;
+  font-weight: 200;
+}
+.dashboard .footer-columns-wrapper table tbody {
+  --tw-bg-opacity: 1;
+  background-color: rgb(52 56 66 / var(--tw-bg-opacity));
+}
+.dashboard .footer-columns-wrapper table tr {
+  --tw-border-opacity: 1;
+  border-bottom-color: rgb(0 198 189 / var(--tw-border-opacity));
+  border-bottom-width: 1px;
+}
+.dashboard .footer-columns-wrapper table tr:last-child {
+  border-style: none;
+}
+.dashboard .footer-columns-wrapper table tr td {
+  padding: 1rem;
 }
 
 .sidebar-wrapper {

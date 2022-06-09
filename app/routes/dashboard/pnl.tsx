@@ -73,11 +73,34 @@ export const loader = async () => {
     },
   ]
 
-  return { pnl, gainers, losers }
+  const allCoins = [
+    {
+      coin: 'WinkLink',
+      amount: 10,
+      holdings: 12,
+    },
+    {
+      coin: 'SLP',
+      amount: 15,
+      holdings: 13,
+    },
+    {
+      coin: 'KNC',
+      amount: 3,
+      holdings: 11,
+    },
+    {
+      coin: 'IDEX',
+      amount: 4,
+      holdings: 13,
+    },
+  ]
+
+  return { pnl, gainers, losers, allCoins }
 }
 
 export default function DashboardPnl() {
-  const { pnl, gainers, losers } = useLoaderData()
+  const { pnl, gainers, losers, allCoins } = useLoaderData()
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     // ref: https://github.com/vercel/next.js/discussions/17443
@@ -113,6 +136,7 @@ export default function DashboardPnl() {
           data={{
             gainers,
             losers,
+            allCoins,
           }}
         />
       </>

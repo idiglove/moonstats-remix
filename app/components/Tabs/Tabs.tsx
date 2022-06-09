@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { FunctionComponent } from 'react'
 
-const Tabs: FunctionComponent<Props> = ({ contentList }) => {
-  const [selected, setSelected] = useState('gainers')
+const Tabs: FunctionComponent<Props> = ({ contentList, layoutId }) => {
+  const [selected, setSelected] = useState(0)
   return (
     <div className="tabs">
       {contentList.map((content, i) => {
@@ -12,19 +12,19 @@ const Tabs: FunctionComponent<Props> = ({ contentList }) => {
           <div
             key={`${content.name}-${i}`}
             className={cx(content.name, 'tab-item')}
-            onClick={() => setSelected(content.name)}
+            onClick={() => setSelected(i)}
           >
             <h4
               className="column-heading"
               style={{
-                color: selected === content.name ? '#00C6BD' : '#CDCDCD',
+                color: selected === i ? '#00C6BD' : '#CDCDCD',
               }}
             >
               {content.text}
             </h4>
-            {content.name === selected && (
+            {i === selected && (
               <motion.div
-                layoutId="gainers-losers"
+                layoutId={layoutId}
                 className="underline"
                 style={{ backgroundColor: '#00C6BD', height: 1 }}
               />
@@ -38,6 +38,7 @@ const Tabs: FunctionComponent<Props> = ({ contentList }) => {
 
 type Props = {
   contentList: Content[]
+  layoutId: string
 }
 
 type Content = {

@@ -3,7 +3,7 @@ import type { ICoin } from '~/types/coin.types'
 
 import Tabs from '../Tabs/Tabs'
 
-const GainersLosers: FunctionComponent<Props> = ({ data }) => {
+const GainersLosers: FunctionComponent<Props> = ({ data, layoutId }) => {
   const contentList = [
     {
       name: 'gainers',
@@ -17,16 +17,18 @@ const GainersLosers: FunctionComponent<Props> = ({ data }) => {
 
   return (
     <div className="footer-column">
-      <Tabs contentList={contentList} />
+      <Tabs contentList={contentList} layoutId={layoutId} />
       <table>
-        {data?.gainers?.map((gainer, i) => {
-          return (
-            <tr key={`${gainer}-${i}`}>
-              <td>{gainer?.coin}</td>
-              <td>{gainer?.amount}</td>
-            </tr>
-          )
-        })}
+        <tbody>
+          {data?.gainers?.map((gainer, i) => {
+            return (
+              <tr key={`${gainer}-${i}`}>
+                <td>{gainer?.coin}</td>
+                <td>{gainer?.amount}</td>
+              </tr>
+            )
+          })}
+        </tbody>
       </table>
     </div>
   )
@@ -37,6 +39,7 @@ type Props = {
     gainers: ICoin[]
     losers: ICoin[]
   }
+  layoutId: string
 }
 
 export default GainersLosers

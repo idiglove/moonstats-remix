@@ -57,9 +57,39 @@
     .tabs {
       @apply flex;
       @apply gap-3;
+      @apply mb-4;
 
       .tab-item {
         @apply cursor-pointer;
+      }
+    }
+
+    table {
+      @apply w-full;
+
+      thead {
+        td {
+          @apply text-teal-primary;
+          @apply pb-4;
+          @apply font-extralight;
+        }
+      }
+
+      tbody {
+        @apply bg-dark-table;
+      }
+
+      tr {
+        @apply border-b-teal-primary;
+        @apply border-b-[1px];
+
+        &:last-child {
+          @apply border-none;
+        }
+
+        td {
+          @apply p-4;
+        }
       }
     }
   }
