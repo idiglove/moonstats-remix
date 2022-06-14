@@ -1,4 +1,4 @@
-import { useLoaderData } from '@remix-run/react'
+import { Outlet, useLoaderData, Link } from '@remix-run/react'
 
 import FooterColumns from '~/components/FooterColumns/FooterColumns'
 import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
@@ -104,6 +104,10 @@ export default function DashboardPnl() {
   return (
     <div className="pnl-wrapper">
       <>
+        <Outlet />
+        <Link to="/dashboard/pnl/order/add">Add</Link>
+        <br />
+        <Link to="/dashboard/pnl/order/remove">Remove</Link>
         <PnlHeaders pnl={pnl} />
         <PnlLineChart />
         <FooterColumns

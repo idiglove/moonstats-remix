@@ -12,6 +12,7 @@
     "postcss:watch": "postcss styles/**/*.css --dir app/styles --watch"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.4",
     "@remix-run/node": "^1.5.1",
     "@remix-run/react": "^1.5.1",
     "@remix-run/serve": "^1.5.1",
