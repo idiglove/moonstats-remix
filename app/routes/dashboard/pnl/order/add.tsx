@@ -1,20 +1,58 @@
+import { useNavigate, useActionData } from '@remix-run/react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
+import { withZod } from '@remix-validated-form/with-zod'
+import type { ActionFunction } from '@remix-run/node'
+import { json } from '@remix-run/node'
+// import { ActionFunction, json, useActionData } from "remix";
+import { ValidatedForm, validationError } from 'remix-validated-form'
+import { z } from 'zod'
+import Input from '~/components/Common/Input/Input'
+import Button from '~/components/Common/Button/Button'
+import Dropdown from '~/components/Common/Autocomplete/Autocomplete'
+
+export const validator = withZod(
+  z.object({
+    firstName: z.string().min(1, { message: 'First name is required' }),
+    lastName: z.string().min(1, { message: 'Last name is required' }),
+    email: z
+      .string()
+      .min(1, { message: 'Email is required' })
+      .email('Must be a valid email'),
+  })
+)
+
+export const action: ActionFunction = async ({ request }) => {
+  const data = await validator.validate(await request.formData())
+  if (data.error) return validationError(data.error)
+  const { firstName, lastName, email } = data.data
+
+  return json({
+    title: `Hi ${firstName} ${lastName}!`,
+    description: `Your email is ${email}`,
+  })
+}
 
 export default function AddOrder() {
+  const navigate = useNavigate()
   let [isOpen, setIsOpen] = useState(true)
+  const data = useActionData()
 
   function closeModal() {
     setIsOpen(false)
-
-    window.history.pushState(null, '', '/dashboard/pnl/')
-    const popStateEvent = new PopStateEvent('popstate', { state: null })
-    dispatchEvent(popStateEvent)
   }
-
+  console.log('data', { data })
   return (
     <>
-      <Transition appear show={isOpen} as={Fragment}>
+      <Transition
+        appear
+        show={isOpen}
+        as={Fragment}
+        leave="transition-opacity duration-150"
+        leaveFrom="opacity-100"
+        leaveTo="opacity-0"
+        afterLeave={() => navigate('/dashboard/pnl/')}
+      >
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
             as={Fragment}
@@ -25,6 +63,7 @@ export default function AddOrder() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
+            {/* this is the faded background */}
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
@@ -44,24 +83,23 @@ export default function AddOrder() {
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Payment successful
+                    Add an Order
                   </Dialog.Title>
-                  <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Your payment has been successfully submitted. We’ve sent
-                      you an email with all of the details of your order.
-                    </p>
-                  </div>
-
-                  <div className="mt-4">
-                    <button
-                      type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-                      onClick={closeModal}
-                    >
-                      Got it, thanks!
-                    </button>
-                  </div>
+                  <Dropdown />
+                  <ValidatedForm validator={validator} method="post">
+                    <Input
+                      name="firstName"
+                      placeholder="first name"
+                      label="First Name"
+                    />
+                    <Input
+                      name="lastName"
+                      placeholder="last name"
+                      label="Last Name"
+                    />
+                    <Input name="email" placeholder="email" label="Email" />
+                    <Button buttonLabel="Submit" />
+                  </ValidatedForm>
                 </Dialog.Panel>
               </Transition.Child>
             </div>
