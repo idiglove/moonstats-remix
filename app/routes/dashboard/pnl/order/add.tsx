@@ -10,6 +10,7 @@ import { z } from 'zod'
 import Input from '~/components/Common/Input/Input'
 import Button from '~/components/Common/Button/Button'
 import Dropdown from '~/components/Common/Autocomplete/Autocomplete'
+import SymbolAutocomplete from '~/components/SymbolAutocomplete/SymbolAutocomplete'
 
 export const validator = withZod(
   z.object({
@@ -41,7 +42,7 @@ export default function AddOrder() {
   function closeModal() {
     setIsOpen(false)
   }
-  console.log('data', { data })
+  // console.log('data', { data })
   return (
     <>
       <Transition
@@ -85,7 +86,7 @@ export default function AddOrder() {
                   >
                     Add an Order
                   </Dialog.Title>
-                  <Dropdown />
+                  <SymbolAutocomplete />
                   <ValidatedForm validator={validator} method="post">
                     <Input
                       name="firstName"

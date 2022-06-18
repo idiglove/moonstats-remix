@@ -6,9 +6,11 @@ const CoinsColumn: FunctionComponent<Props> = ({ allCoins }) => {
     <div className="footer-column">
       <table>
         <thead>
-          <td>Coin</td>
-          <td>Amount</td>
-          <td>Holdings</td>
+          <tr>
+            <th>Coin</th>
+            <th>Amount</th>
+            <th>Holdings</th>
+          </tr>
         </thead>
         <tbody>
           {allCoins?.map((coin, i) => {
