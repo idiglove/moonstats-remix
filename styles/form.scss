@@ -1,0 +1,33 @@
+form {
+  @apply text-dark-primary;
+
+  label {
+    @apply text-gray-primary;
+    @apply block;
+    @apply mt-2;
+  }
+
+  input {
+    @apply border-2;
+    @apply rounded-lg;
+    @apply p-2;
+  }
+
+  .menu-button {
+    @apply border-2;
+    @apply rounded-lg;
+    @apply p-2;
+  }
+
+  button[type='submit'] {
+    @apply bg-teal-primary;
+    @apply p-2;
+    @apply rounded-lg;
+    @apply mt-2;
+  }
+
+  .input-error {
+    @apply block;
+    @apply text-red-600;
+  }
+}

@@ -8,9 +8,13 @@ import {
   ScrollRestoration,
 } from '@remix-run/react'
 import styles from './styles/app.css'
+import formStyles from './styles/form.css'
 
 export function links() {
-  return [{ rel: 'stylesheet', href: styles }]
+  return [
+    { rel: 'stylesheet', href: styles },
+    { rel: 'stylesheet', href: formStyles },
+  ]
 }
 
 export const meta: MetaFunction = () => ({

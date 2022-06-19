@@ -9,29 +9,34 @@ import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
 import Input from '~/components/Common/Input/Input'
 import Button from '~/components/Common/Button/Button'
-import Dropdown from '~/components/Common/Autocomplete/Autocomplete'
+import Dropdown from '~/components/Common/Dropdown/Dropdown'
 import SymbolAutocomplete from '~/components/SymbolAutocomplete/SymbolAutocomplete'
+import { typeDropdown } from '~/constants/typeDropdown'
 
 export const validator = withZod(
   z.object({
-    firstName: z.string().min(1, { message: 'First name is required' }),
-    lastName: z.string().min(1, { message: 'Last name is required' }),
-    email: z
-      .string()
-      .min(1, { message: 'Email is required' })
-      .email('Must be a valid email'),
+    pricePerCoin: z.string().min(1, { message: 'Price per coin is required' }),
+    symbol: z.string().min(1, { message: 'Coin is required' }),
+    quantity: z.string().min(1, { message: 'Quantity is required' }),
   })
 )
 
 export const action: ActionFunction = async ({ request }) => {
-  const data = await validator.validate(await request.formData())
-  if (data.error) return validationError(data.error)
-  const { firstName, lastName, email } = data.data
+  // const data = await validator.validate(await request.formData())
+  const formData = await request.formData()
+  const values = Object.fromEntries(formData)
+  console.log('action', { values })
+  // if (data.error) return validationError(data.error)
+  // const { firstName, lastName, email } = data.data
 
-  return json({
-    title: `Hi ${firstName} ${lastName}!`,
-    description: `Your email is ${email}`,
-  })
+  // return json({
+  //   title: `Hi ${firstName} ${lastName}!`,
+  //   description: `Your email is ${email}`,
+  // })
+  // if (data.error) {
+
+  // }
+  return null
 }
 
 export default function AddOrder() {
@@ -86,19 +91,21 @@ export default function AddOrder() {
                   >
                     Add an Order
                   </Dialog.Title>
-                  <SymbolAutocomplete />
                   <ValidatedForm validator={validator} method="post">
+                    <SymbolAutocomplete />
+                    <Dropdown {...typeDropdown} />
                     <Input
-                      name="firstName"
-                      placeholder="first name"
-                      label="First Name"
+                      name="pricePerCoin"
+                      placeholder="Price Per Coin"
+                      label="Price Per Coin"
+                      type="number"
                     />
                     <Input
-                      name="lastName"
-                      placeholder="last name"
-                      label="Last Name"
+                      name="quantity"
+                      placeholder="Quantity"
+                      label="Quantity"
+                      type="number"
                     />
-                    <Input name="email" placeholder="email" label="Email" />
                     <Button buttonLabel="Submit" />
                   </ValidatedForm>
                 </Dialog.Panel>
