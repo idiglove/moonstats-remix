@@ -3,9 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import { withZod } from '@remix-validated-form/with-zod'
 import type { ActionFunction } from '@remix-run/node'
-import { json } from '@remix-run/node'
-// import { ActionFunction, json, useActionData } from "remix";
-import { ValidatedForm, validationError } from 'remix-validated-form'
+import { ValidatedForm } from 'remix-validated-form'
 import { z } from 'zod'
 import Input from '~/components/Common/Input/Input'
 import Button from '~/components/Common/Button/Button'
@@ -15,27 +13,37 @@ import { typeDropdown } from '~/constants/typeDropdown'
 
 export const validator = withZod(
   z.object({
-    pricePerCoin: z.string().min(1, { message: 'Price per coin is required' }),
+    pricePerCoin: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+      message: 'Should be a number',
+    }),
     symbol: z.string().min(1, { message: 'Coin is required' }),
-    quantity: z.string().min(1, { message: 'Quantity is required' }),
+    quantity: z.string().refine((val) => !Number.isNaN(parseInt(val, 10)), {
+      message: 'Should be a number',
+    }),
   })
 )
 
 export const action: ActionFunction = async ({ request }) => {
-  // const data = await validator.validate(await request.formData())
   const formData = await request.formData()
   const values = Object.fromEntries(formData)
-  console.log('action', { values })
-  // if (data.error) return validationError(data.error)
-  // const { firstName, lastName, email } = data.data
+  const symbolObj = JSON.parse(values?.symbol as string)
 
-  // return json({
-  //   title: `Hi ${firstName} ${lastName}!`,
-  //   description: `Your email is ${email}`,
-  // })
-  // if (data.error) {
+  const res = await fetch('http://localhost:3003/spot-order', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      userId: 'test',
+      symbolPair: `${symbolObj?.symbol.toUpperCase()}-USDT`,
+      coinId: symbolObj?.id ?? '',
+      type: values.type,
+      pricePerCoin: values.pricePerCoin,
+      quantity: values.quantity,
+    }),
+  })
 
-  // }
   return null
 }
 
@@ -47,7 +55,7 @@ export default function AddOrder() {
   function closeModal() {
     setIsOpen(false)
   }
-  // console.log('data', { data })
+
   return (
     <>
       <Transition
@@ -99,12 +107,14 @@ export default function AddOrder() {
                       placeholder="Price Per Coin"
                       label="Price Per Coin"
                       type="number"
+                      step="any"
                     />
                     <Input
                       name="quantity"
                       placeholder="Quantity"
                       label="Quantity"
                       type="number"
+                      step="any"
                     />
                     <Button buttonLabel="Submit" />
                   </ValidatedForm>

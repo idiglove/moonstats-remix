@@ -6,7 +6,8 @@
 }
 .dashboard .pnl-wrapper {
   @apply min-w-[56.25rem];
-  @apply mx-auto;
+  @apply mr-auto;
+  margin-left: 20%;
   @apply mt-[3.75rem];
 }
 .dashboard .pnl-wrapper .pnl-line-chart-wrapper {
@@ -15,6 +16,14 @@
   @apply bg-gray-primary;
   @apply mt-6;
   @apply rounded-xl;
+}
+.dashboard .pnl-wrapper .add-order-btn {
+  @apply block;
+  @apply bg-gray-primary;
+  @apply rounded-xl;
+  @apply mt-6;
+  @apply p-4;
+  @apply w-[7rem];
 }
 .dashboard .column-heading {
   @apply text-teal-primary;
@@ -78,8 +87,10 @@
 }
 
 .sidebar-wrapper {
-  @apply h-auto;
-  @apply w-[250px];
+  @apply h-screen;
+  @apply fixed;
+  width: 15%;
+  height: 100%;
   @apply bg-dark-secondary;
   @apply p-4;
 }

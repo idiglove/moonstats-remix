@@ -105,11 +105,11 @@ export default function DashboardPnl() {
     <div className="pnl-wrapper">
       <>
         <Outlet />
-        <Link to="/dashboard/pnl/order/add">Add</Link>
-        <br />
-        <Link to="/dashboard/pnl/order/remove">Remove</Link>
         <PnlHeaders pnl={pnl} />
         <PnlLineChart />
+        <Link to="/dashboard/pnl/order/add" className="add-order-btn">
+          Add Order
+        </Link>
         <FooterColumns
           data={{
             gainers,

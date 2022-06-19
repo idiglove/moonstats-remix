@@ -22,16 +22,18 @@ const Autocomplete = ({ data, field, secondaryField, setQuery }: Props) => {
       <Combobox value={selected} onChange={setSelected}>
         <div className="relative mt-1">
           <div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-            <Combobox.Input
+            <input
+              hidden
+              type="text"
+              value={JSON.stringify(selected)}
               name="symbol"
+            />
+            <Combobox.Input
               className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
               displayValue={(value: any) => {
-                if (value && value[secondaryField ?? '']) {
-                  return value[secondaryField ?? '']
+                if (value && value[field] && value[secondaryField ?? '']) {
+                  return `${value[field]} ${value[secondaryField ?? '']}`
                 }
-                // if (value && value[field] && value[secondaryField ?? '']) {
-                //   return `${value[field]} ${value[secondaryField ?? '']}`
-                // }
                 return ''
               }}
               {...getInputProps}

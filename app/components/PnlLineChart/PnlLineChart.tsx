@@ -31,6 +31,9 @@ export const options = {
       text: 'Chart.js Line Chart',
     },
   },
+  options: {
+    maintainAspectRatio: false,
+  },
 }
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
@@ -59,8 +62,11 @@ export const data = {
 
 const PnlLineChart = () => {
   return (
-    <div className="pnl-line-chart-wrapper">
-      <Line options={options} data={data} />
+    <div
+      className="pnl-line-chart-wrapper"
+      style={{ height: '352px', width: '100%' }}
+    >
+      <Line options={options} data={data} width="900" height="340" />
     </div>
   )
 }
