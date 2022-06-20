@@ -1,8 +1,7 @@
 export type HeaderColumnData = {
   field: string
-  mainAmount: number
-  isPositive?: boolean
-  showSubheading?: boolean
+  mainText: string
+  subText?: string
   name?: string
 }
 

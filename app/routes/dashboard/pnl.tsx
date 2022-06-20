@@ -1,36 +1,34 @@
 import { Outlet, useLoaderData, Link } from '@remix-run/react'
 
 import FooterColumns from '~/components/FooterColumns/FooterColumns'
+import { HeaderColumnData } from '~/components/HeaderColumn/types'
 import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
 
 export const loader = async () => {
-  // const pnlRes = await fetch('http://localhost:3003/spot-order/')
-  // console.log(await pnlRes?.json())
-  const pnl = [
+  const userId = 'test'
+  const pnlRes = await fetch(`http://localhost:3003/user/pnl/id/${userId}`)
+  const pnlObj = await pnlRes?.json()
+
+  // const pnl = pnlObj?.
+  const pnl: HeaderColumnData[] = [
     {
-      name: 'Total PNL',
-      field: 'pnl',
-      mainAmount: 20,
-      isPositive: true,
+      name: 'Unrealized PNL',
+      field: 'unrealizedPnl',
+      mainText: `$${pnlObj?.totalUnrealizedPnl ?? 0}`,
+      subText: '',
     },
     {
-      name: 'Balance',
-      field: 'balance',
-      mainAmount: 100,
-      showSubheading: true,
+      name: 'Realized PNL',
+      field: 'realizedPnl',
+      mainText: `$${pnlObj?.totalRealizedPnl ?? 0}`,
     },
     {
-      name: '24 Hour Change',
-      field: 'dailyChange',
-      mainAmount: 1,
-      isPositive: true,
-    },
-    {
-      name: 'Weekly Change',
-      field: 'weeklyChange',
-      mainAmount: 2,
-      isPositive: false,
+      name: 'Most Holdings',
+      field: 'mostHoldings',
+      mainText: `${pnlObj?.mostHoldings?.quantity ?? 0} / ${
+        pnlObj?.mostHoldings?.symbol ?? ''
+      }`,
     },
   ]
 
