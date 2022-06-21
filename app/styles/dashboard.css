@@ -19,6 +19,9 @@
   margin-top: 1.5rem;
   border-radius: 0.75rem;
 }
+.dashboard .pnl-wrapper .pnl-line-chart-wrapper canvas {
+  padding: 1rem;
+}
 .dashboard .pnl-wrapper .add-order-btn {
   display: block;
   --tw-bg-opacity: 1;

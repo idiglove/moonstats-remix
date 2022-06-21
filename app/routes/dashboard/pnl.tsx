@@ -9,6 +9,10 @@ export const loader = async () => {
   const userId = 'test'
   const pnlRes = await fetch(`${process.env.API_URL}/user/pnl/id/${userId}`)
   const pnlObj = await pnlRes?.json()
+  const spotOrdersByDateRes = await fetch(
+    `${process.env.API_URL}/spot-order/date-grouped/user/${userId}`
+  )
+  const spotOrdersByDate = await spotOrdersByDateRes?.json()
 
   const pnl: HeaderColumnData[] = [
     {
@@ -38,34 +42,18 @@ export const loader = async () => {
     }
   })
 
-  const allCoins = [
-    {
-      coin: 'WinkLink',
-      amount: 10,
-      holdings: 12,
-    },
-    {
-      coin: 'SLP',
-      amount: 15,
-      holdings: 13,
-    },
-    {
-      coin: 'KNC',
-      amount: 3,
-      holdings: 11,
-    },
-    {
-      coin: 'IDEX',
-      amount: 4,
-      holdings: 13,
-    },
-  ]
-
-  return { pnl, pnlObj, gainersLosers, allCoins, apiUrl: process.env.API_URL }
+  return {
+    pnl,
+    pnlObj,
+    gainersLosers,
+    apiUrl: process.env.API_URL,
+    spotOrdersByDate,
+  }
 }
 
 export default function DashboardPnl() {
-  const { pnl, gainersLosers, allCoins, apiUrl, pnlObj } = useLoaderData()
+  const { pnl, gainersLosers, apiUrl, pnlObj, spotOrdersByDate } =
+    useLoaderData()
   if (typeof window !== 'undefined') {
     window.apiUrl = apiUrl
   }
@@ -75,14 +63,13 @@ export default function DashboardPnl() {
       <>
         <Outlet />
         <PnlHeaders pnl={pnl} />
-        <PnlLineChart />
+        <PnlLineChart spotOrdersByDate={spotOrdersByDate} />
         <Link to="/dashboard/pnl/order/add" className="add-order-btn">
           Add Order
         </Link>
         <FooterColumns
           data={{
             gainersLosers,
-            allCoins,
             pnlObj,
           }}
         />

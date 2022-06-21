@@ -8,7 +8,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js'
+import type { FunctionComponent } from 'react'
 import { Line } from 'react-chartjs-2'
+import type { IPnl, ISpotOrder } from '~/types/coin.types'
 
 ChartJS.register(
   CategoryScale,
@@ -28,7 +30,7 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Line Chart',
+      text: 'Spot Order Activity',
     },
   },
   options: {
@@ -36,39 +38,71 @@ export const options = {
   },
 }
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+export const data = (spotOrdersByDate: SpotOrdersByDate[]) => {
+  let dates: string[] = []
+  const items = spotOrdersByDate?.map((so) => {
+    dates.push(`${so?._id?.day}-${so?._id?.month}-${so?._id?.year}`)
+    let buy = 0
+    let sell = 0
 
-const min = Math.ceil(0)
-const max = Math.floor(100)
-// const random = Math.floor(Math.random() * (max - min) + min)
+    so?.items?.map((item) => {
+      if (item.type === 'BUY') {
+        buy++
+      } else {
+        sell++
+      }
+    })
 
-export const data = {
-  labels,
-  datasets: [
+    return { buy, sell }
+  })
+
+  const dataset = [
     {
-      label: 'Dataset 1',
-      data: labels.map(() => Math.floor(Math.random() * (max - min) + min)),
+      label: 'Buy',
+      data: items.map((item) => {
+        return item?.buy
+      }),
       borderColor: 'rgb(255, 99, 132)',
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
     {
-      label: 'Dataset 2',
-      data: labels.map(() => Math.floor(Math.random() * (max - min) + min)),
-      borderColor: 'rgb(53, 162, 235)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      label: 'Sell',
+      data: items.map((item) => {
+        return item?.sell
+      }),
+      borderColor: 'rgb(0, 198, 189)',
+      backgroundColor: 'rgba(0, 198, 189, 0.5)',
     },
-  ],
+  ]
+  return {
+    labels: dates,
+    datasets: dataset,
+  }
 }
 
-const PnlLineChart = () => {
+const PnlLineChart: FunctionComponent<Props> = ({ spotOrdersByDate }) => {
+  const dataset = data(spotOrdersByDate)
   return (
     <div
       className="pnl-line-chart-wrapper"
       style={{ height: '352px', width: '100%' }}
     >
-      <Line options={options} data={data} width="900" height="340" />
+      <Line options={options} data={dataset} width="900" height="340" />
     </div>
   )
+}
+
+type Props = {
+  spotOrdersByDate: SpotOrdersByDate[]
+}
+
+type SpotOrdersByDate = {
+  _id: {
+    day: number
+    month: number
+    year: number
+  }
+  items: ISpotOrder[]
 }
 
 export default PnlLineChart

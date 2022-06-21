@@ -16,7 +16,6 @@ const FooterColumns: FunctionComponent<Props> = ({ data }) => {
 type Props = {
   data: {
     gainersLosers: ICoin[]
-    allCoins: ICoin[]
     pnlObj: IPnl
   }
 }

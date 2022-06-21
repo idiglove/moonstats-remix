@@ -17,6 +17,9 @@
   @apply mt-6;
   @apply rounded-xl;
 }
+.dashboard .pnl-wrapper .pnl-line-chart-wrapper canvas {
+  @apply p-4;
+}
 .dashboard .pnl-wrapper .add-order-btn {
   @apply block;
   @apply bg-teal-primary;

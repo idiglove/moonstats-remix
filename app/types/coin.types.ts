@@ -18,3 +18,15 @@ export interface PnlBreakdown {
   unrealizedQuantity: number
   symbol: string
 }
+
+export interface ISpotOrder {
+  _id: string
+  userId: string
+  symbolPair: string
+  coinId: string
+  type: string
+  pricePerCoin: number
+  quantity: number
+  totalAmount: number
+  createdAt: string
+}

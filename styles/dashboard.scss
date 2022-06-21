@@ -16,6 +16,10 @@
       @apply bg-gray-primary;
       @apply mt-6;
       @apply rounded-xl;
+
+      canvas {
+        @apply p-4;
+      }
     }
 
     .add-order-btn {
