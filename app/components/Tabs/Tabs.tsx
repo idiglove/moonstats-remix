@@ -1,10 +1,15 @@
 import cx from 'classnames'
-import { useState } from 'react'
+// import { useState } from 'react'
 import { motion } from 'framer-motion'
 import type { FunctionComponent } from 'react'
 
-const Tabs: FunctionComponent<Props> = ({ contentList, layoutId }) => {
-  const [selected, setSelected] = useState(0)
+const Tabs: FunctionComponent<Props> = ({
+  contentList,
+  layoutId,
+  setSelected,
+  selected,
+}) => {
+  // const [selected, setSelected] = useState(0)
   return (
     <div className="tabs">
       {contentList.map((content, i) => {
@@ -39,6 +44,8 @@ const Tabs: FunctionComponent<Props> = ({ contentList, layoutId }) => {
 type Props = {
   contentList: Content[]
   layoutId: string
+  selected: number
+  setSelected: Function
 }
 
 type Content = {

@@ -7,9 +7,9 @@ const SymbolAutocomplete = () => {
 
   useEffect(() => {
     const fetchSymbols = async (symbol: string) => {
-      const symbolRes = await fetch(
-        `http://localhost:3003/coin-gecko/symbol/${symbol}`
-      )
+      const apiUrl =
+        window && window.apiUrl ? window.apiUrl : 'http://localhost:3003'
+      const symbolRes = await fetch(`${apiUrl}/coin-gecko/symbol/${symbol}`)
       const symbols = await symbolRes?.json()
       setData(symbols)
     }

@@ -20,7 +20,8 @@
 
     .add-order-btn {
       @apply block;
-      @apply bg-gray-primary;
+      @apply bg-teal-primary;
+      @apply text-dark-primary;
       @apply rounded-xl;
       @apply mt-6;
       @apply p-4;
@@ -78,10 +79,11 @@
       @apply w-full;
 
       thead {
-        td {
+        th {
           @apply text-teal-primary;
           @apply pb-4;
           @apply font-extralight;
+          @apply text-left;
         }
       }
 

@@ -19,7 +19,8 @@
 }
 .dashboard .pnl-wrapper .add-order-btn {
   @apply block;
-  @apply bg-gray-primary;
+  @apply bg-teal-primary;
+  @apply text-dark-primary;
   @apply rounded-xl;
   @apply mt-6;
   @apply p-4;
@@ -67,10 +68,11 @@
 .dashboard .footer-columns-wrapper table {
   @apply w-full;
 }
-.dashboard .footer-columns-wrapper table thead td {
+.dashboard .footer-columns-wrapper table thead th {
   @apply text-teal-primary;
   @apply pb-4;
   @apply font-extralight;
+  @apply text-left;
 }
 .dashboard .footer-columns-wrapper table tbody {
   @apply bg-dark-table;

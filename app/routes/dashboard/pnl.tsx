@@ -1,74 +1,42 @@
 import { Outlet, useLoaderData, Link } from '@remix-run/react'
 
 import FooterColumns from '~/components/FooterColumns/FooterColumns'
-import { HeaderColumnData } from '~/components/HeaderColumn/types'
+import type { HeaderColumnData } from '~/components/HeaderColumn/types'
 import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
 
 export const loader = async () => {
   const userId = 'test'
-  const pnlRes = await fetch(`http://localhost:3003/user/pnl/id/${userId}`)
+  const pnlRes = await fetch(`${process.env.API_URL}/user/pnl/id/${userId}`)
   const pnlObj = await pnlRes?.json()
 
-  // const pnl = pnlObj?.
   const pnl: HeaderColumnData[] = [
     {
       name: 'Unrealized PNL',
       field: 'unrealizedPnl',
-      mainText: `$${pnlObj?.totalUnrealizedPnl ?? 0}`,
+      mainText: `${pnlObj?.totalUnrealizedPnl.toFixed(2) ?? 0}$`,
       subText: '',
     },
     {
       name: 'Realized PNL',
       field: 'realizedPnl',
-      mainText: `$${pnlObj?.totalRealizedPnl ?? 0}`,
+      mainText: `${pnlObj?.totalRealizedPnl.toFixed(2) ?? 0}$`,
     },
     {
       name: 'Most Holdings',
       field: 'mostHoldings',
-      mainText: `${pnlObj?.mostHoldings?.quantity ?? 0} / ${
-        pnlObj?.mostHoldings?.symbol ?? ''
+      mainText: `${pnlObj?.mostHoldings?.quantity.toFixed(3) ?? 0} / ${
+        pnlObj?.mostHoldings?.symbol.toUpperCase() ?? ''
       }`,
     },
   ]
 
-  const gainers = [
-    {
-      coin: 'WinkLink',
-      amount: 10,
-    },
-    {
-      coin: 'SLP',
-      amount: 15,
-    },
-    {
-      coin: 'KNC',
-      amount: 3,
-    },
-    {
-      coin: 'IDEX',
-      amount: 4,
-    },
-  ]
-
-  const losers = [
-    {
-      coin: 'WinkLink',
-      amount: 10,
-    },
-    {
-      coin: 'SLP',
-      amount: 15,
-    },
-    {
-      coin: 'KNC',
-      amount: 3,
-    },
-    {
-      coin: 'IDEX',
-      amount: 4,
-    },
-  ]
+  const gainersLosers = pnlObj?.totalPnl?.map((pnl: any) => {
+    return {
+      coin: pnl?.symbol ?? '',
+      amount: pnl?.realizedPnl,
+    }
+  })
 
   const allCoins = [
     {
@@ -93,11 +61,14 @@ export const loader = async () => {
     },
   ]
 
-  return { pnl, gainers, losers, allCoins }
+  return { pnl, pnlObj, gainersLosers, allCoins, apiUrl: process.env.API_URL }
 }
 
 export default function DashboardPnl() {
-  const { pnl, gainers, losers, allCoins } = useLoaderData()
+  const { pnl, gainersLosers, allCoins, apiUrl, pnlObj } = useLoaderData()
+  if (typeof window !== 'undefined') {
+    window.apiUrl = apiUrl
+  }
 
   return (
     <div className="pnl-wrapper">
@@ -110,9 +81,9 @@ export default function DashboardPnl() {
         </Link>
         <FooterColumns
           data={{
-            gainers,
-            losers,
+            gainersLosers,
             allCoins,
+            pnlObj,
           }}
         />
       </>

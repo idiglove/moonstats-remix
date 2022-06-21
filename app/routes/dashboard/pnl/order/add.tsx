@@ -28,7 +28,7 @@ export const action: ActionFunction = async ({ request }) => {
   const values = Object.fromEntries(formData)
   const symbolObj = JSON.parse(values?.symbol as string)
 
-  const res = await fetch('http://localhost:3003/spot-order', {
+  await fetch(`${process.env.API_URL}/spot-order`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

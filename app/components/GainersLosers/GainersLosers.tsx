@@ -1,9 +1,12 @@
 import type { FunctionComponent } from 'react'
-import type { ICoin } from '~/types/coin.types'
-
+import { useState } from 'react'
+import type { ICoin, IPnl } from '~/types/coin.types'
 import Tabs from '../Tabs/Tabs'
+import Gainers from './Gainers/Gainers'
+import Losers from './Losers/Losers'
 
 const GainersLosers: FunctionComponent<Props> = ({ data, layoutId }) => {
+  const [selected, setSelected] = useState(0)
   const contentList = [
     {
       name: 'gainers',
@@ -17,27 +20,32 @@ const GainersLosers: FunctionComponent<Props> = ({ data, layoutId }) => {
 
   return (
     <div className="footer-column">
-      <Tabs contentList={contentList} layoutId={layoutId} />
-      <table>
-        <tbody>
-          {data?.gainers?.map((gainer, i) => {
-            return (
-              <tr key={`${gainer}-${i}`}>
-                <td>{gainer?.coin}</td>
-                <td>{gainer?.amount}</td>
-              </tr>
-            )
-          })}
-        </tbody>
-      </table>
+      <Tabs
+        contentList={contentList}
+        layoutId={layoutId}
+        setSelected={setSelected}
+        selected={selected}
+      />
+      {selected === 0 ? (
+        <Gainers
+          totalRealizedPnl={data?.pnlObj?.totalRealizedPnl}
+          gainersData={data?.gainersLosers}
+        />
+      ) : (
+        <Losers
+          totalRealizedPnl={data?.pnlObj?.totalRealizedPnl}
+          losersData={data?.gainersLosers}
+        />
+      )}
     </div>
   )
 }
 
 type Props = {
   data: {
-    gainers: ICoin[]
-    losers: ICoin[]
+    gainersLosers: ICoin[]
+    allCoins: ICoin[]
+    pnlObj: IPnl
   }
   layoutId: string
 }

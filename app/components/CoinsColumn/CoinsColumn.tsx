@@ -1,24 +1,24 @@
 import type { FunctionComponent } from 'react'
-import type { ICoin } from '~/types/coin.types'
+import type { PnlBreakdown } from '~/types/coin.types'
 
-const CoinsColumn: FunctionComponent<Props> = ({ allCoins }) => {
+const CoinsColumn: FunctionComponent<Props> = ({ pnlBreakdown }) => {
   return (
     <div className="footer-column">
       <table>
         <thead>
           <tr>
             <th>Coin</th>
-            <th>Amount</th>
+            <th>PNL</th>
             <th>Holdings</th>
           </tr>
         </thead>
         <tbody>
-          {allCoins?.map((coin, i) => {
+          {pnlBreakdown?.map((coin, i) => {
             return (
               <tr key={`${coin}-${i}`}>
-                <td>{coin?.coin}</td>
-                <td>{coin?.amount}</td>
-                <td>{coin?.holdings ?? '-'}</td>
+                <td>{coin?.symbol.toUpperCase()}</td>
+                <td>{coin?.realizedPnl.toFixed(3)}</td>
+                <td>{coin?.unrealizedQuantity ?? '-'}</td>
               </tr>
             )
           })}
@@ -29,7 +29,7 @@ const CoinsColumn: FunctionComponent<Props> = ({ allCoins }) => {
 }
 
 type Props = {
-  allCoins: ICoin[]
+  pnlBreakdown: PnlBreakdown[]
 }
 
 export default CoinsColumn
