@@ -109,6 +109,7 @@
   --tw-bg-opacity: 1;
   background-color: rgb(41 45 57 / var(--tw-bg-opacity));
   padding: 1rem;
+  padding-left: 2rem;
 }
 .sidebar-wrapper h1 {
   font-size: 2.25rem;

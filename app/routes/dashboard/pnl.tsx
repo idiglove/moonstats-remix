@@ -6,7 +6,10 @@ import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
 
 export const loader = async () => {
-  const userId = 'test'
+  // const userId = 'test'
+  const userId = '62b29088109c957aa82ca3a9'
+  // const url = new URL(request.url)
+  // const userId = url.searchParams.get('userId')
   const pnlRes = await fetch(`${process.env.API_URL}/user/pnl/id/${userId}`)
   const pnlObj = await pnlRes?.json()
   const spotOrdersByDateRes = await fetch(
@@ -18,18 +21,18 @@ export const loader = async () => {
     {
       name: 'Unrealized PNL',
       field: 'unrealizedPnl',
-      mainText: `${pnlObj?.totalUnrealizedPnl.toFixed(2) ?? 0}$`,
+      mainText: `${pnlObj?.totalUnrealizedPnl?.toFixed(2) ?? 0}$`,
       subText: '',
     },
     {
       name: 'Realized PNL',
       field: 'realizedPnl',
-      mainText: `${pnlObj?.totalRealizedPnl.toFixed(2) ?? 0}$`,
+      mainText: `${pnlObj?.totalRealizedPnl?.toFixed(2) ?? 0}$`,
     },
     {
       name: 'Most Holdings',
       field: 'mostHoldings',
-      mainText: `${pnlObj?.mostHoldings?.quantity.toFixed(3) ?? 0} / ${
+      mainText: `${pnlObj?.mostHoldings?.quantity?.toFixed(3) ?? 0} / ${
         pnlObj?.mostHoldings?.symbol.toUpperCase() ?? ''
       }`,
     },
