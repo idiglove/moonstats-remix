@@ -1,0 +1,11 @@
+.root-page-wrapper {
+  @apply bg-white;
+  @apply flex;
+  @apply items-center;
+  @apply justify-center;
+  @apply p-4;
+  @apply rounded-xl;
+  @apply mr-auto;
+  margin-left: 20%;
+  @apply mt-[3.75rem]; //60px
+}

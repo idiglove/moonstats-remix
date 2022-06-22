@@ -1,0 +1,14 @@
+.root-page-wrapper {
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  margin-right: auto;
+  margin-left: 20%;
+  margin-top: 3.75rem
+}
+
+/*# sourceMappingURL=root.css.map */
