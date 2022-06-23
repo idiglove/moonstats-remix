@@ -1,15 +1,21 @@
+import type { LoaderFunction} from '@remix-run/node';
+import { redirect } from '@remix-run/node'
 import { Outlet, useLoaderData, Link } from '@remix-run/react'
 
 import FooterColumns from '~/components/FooterColumns/FooterColumns'
 import type { HeaderColumnData } from '~/components/HeaderColumn/types'
 import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
+import { getSession } from './../../utils/sessions'
 
-export const loader = async () => {
-  // const userId = 'test'
-  const userId = '62b29088109c957aa82ca3a9'
-  // const url = new URL(request.url)
-  // const userId = url.searchParams.get('userId')
+export const loader: LoaderFunction = async ({ request }) => {
+  const session = await getSession(request.headers.get('Cookie'))
+  const user = session.get('user')
+  if (!session.has('user')) {
+    return redirect('/')
+  }
+
+  const userId = user.id ?? ''
   const pnlRes = await fetch(`${process.env.API_URL}/user/pnl/id/${userId}`)
   const pnlObj = await pnlRes?.json()
   const spotOrdersByDateRes = await fetch(
@@ -51,11 +57,12 @@ export const loader = async () => {
     gainersLosers,
     apiUrl: process.env.API_URL,
     spotOrdersByDate,
+    user
   }
 }
 
 export default function DashboardPnl() {
-  const { pnl, gainersLosers, apiUrl, pnlObj, spotOrdersByDate } =
+  const { pnl, gainersLosers, apiUrl, pnlObj, spotOrdersByDate, user } =
     useLoaderData()
   if (typeof window !== 'undefined') {
     window.apiUrl = apiUrl

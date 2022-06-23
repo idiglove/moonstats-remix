@@ -10,5 +10,8 @@
   margin-left: 20%;
   margin-top: 3.75rem
 }
+.root-page-wrapper form input {
+  width: 24rem
+}
 
 /*# sourceMappingURL=root.css.map */

@@ -59,7 +59,7 @@ export const data = (spotOrdersByDate: SpotOrdersByDate[]) => {
   const dataset = [
     {
       label: 'Buy',
-      data: items.map((item) => {
+      data: items?.map((item) => {
         return item?.buy
       }),
       borderColor: 'rgb(255, 255, 255)',
@@ -67,7 +67,7 @@ export const data = (spotOrdersByDate: SpotOrdersByDate[]) => {
     },
     {
       label: 'Sell',
-      data: items.map((item) => {
+      data: items?.map((item) => {
         return item?.sell
       }),
       borderColor: 'rgb(0, 198, 189)',

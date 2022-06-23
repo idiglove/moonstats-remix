@@ -9,5 +9,8 @@
   margin-left: 20%;
   @apply mt-[3.75rem];
 }
+.root-page-wrapper form input {
+  @apply w-[24rem];
+}
 
 /*# sourceMappingURL=root.css.map */

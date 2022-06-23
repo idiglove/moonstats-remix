@@ -8,4 +8,10 @@
   @apply mr-auto;
   margin-left: 20%;
   @apply mt-[3.75rem]; //60px
+
+  form {
+    input {
+      @apply w-[24rem];
+    }
+  }
 }
