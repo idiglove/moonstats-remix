@@ -7,7 +7,7 @@ const { getSession, commitSession, destroySession } =
       name: "user_session",
 
       // all of these are optional
-      expires: new Date(Date.now() + 60_000),
+      // expires: new Date(Date.now() + 60_000),
       httpOnly: true,
       secrets: ["s3cret1"],
       secure: true,
