@@ -1,8 +1,5 @@
-import type { ActionFunction} from '@remix-run/node';
-import { redirect } from '@remix-run/node';
 import type { FunctionComponent } from 'react'
 import type { IUser } from '~/types/user.types'
-import { getSession, destroySession } from '~/utils/sessions';
 
 const Sidebar: FunctionComponent<Props> = ({ user }) => {
   return (

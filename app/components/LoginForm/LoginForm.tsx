@@ -4,6 +4,7 @@ import { useActionData } from '@remix-run/react'
 import { z } from 'zod'
 import Input from '~/components/Common/Input/Input'
 import Button from '~/components/Common/Button/Button'
+import React from 'react'
 
 export const validator = withZod(
   z.object({
@@ -17,7 +18,7 @@ const LoginForm = () => {
   const { res } = actionData ?? {}
 
   return (
-    <div>
+    <React.Fragment>
       <ValidatedForm validator={validator} method="post">
         <Input
           name="email"
@@ -37,7 +38,7 @@ const LoginForm = () => {
         }
         <Button buttonLabel="Submit" />
       </ValidatedForm>
-    </div>
+    </React.Fragment>
   )
 }
 

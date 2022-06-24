@@ -1,8 +1,13 @@
 .dashboard {
   @apply flex;
-  @apply w-full;
-  @apply h-auto;
+  @apply flex-col;
   @apply bg-dark-primary;
+}
+@screen lg {
+  .dashboard {
+    @apply w-full;
+    @apply h-auto;
+  }
 }
 .dashboard .pnl-wrapper {
   @apply min-w-[56.25rem];
@@ -92,20 +97,30 @@
 }
 
 .sidebar-wrapper {
-  @apply h-screen;
-  @apply fixed;
-  width: 15%;
-  height: 100%;
+  @apply h-[5rem];
+  @apply w-full;
   @apply bg-dark-secondary;
   @apply p-4;
-  @apply pl-8;
 }
 .sidebar-wrapper h1 {
   @apply text-4xl;
-  @apply mt-10;
 }
-.sidebar-wrapper ul {
-  @apply mt-6;
+@screen lg {
+  .sidebar-wrapper h1 {
+    @apply mt-10;
+  }
+}
+@screen lg {
+  .sidebar-wrapper {
+    @apply h-screen;
+    @apply fixed;
+    width: 15%;
+    height: 100%;
+    @apply pl-8;
+  }
+  .sidebar-wrapper ul {
+    @apply mt-6;
+  }
 }
 
 /*# sourceMappingURL=dashboard.css.map */

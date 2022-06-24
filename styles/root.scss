@@ -1,17 +1,28 @@
 .root-page-wrapper {
   @apply bg-white;
   @apply flex;
-  @apply items-center;
-  @apply justify-center;
   @apply p-4;
+  @apply w-[90%];
+  @apply mx-auto;
   @apply rounded-xl;
-  @apply mr-auto;
-  margin-left: 20%;
   @apply mt-[3.75rem]; //60px
 
+  @screen lg {
+    @apply items-center;
+    @apply justify-center;
+    @apply mr-auto;
+    margin-left: 20%;
+    @apply w-[26rem];
+  }
+
   form {
+    @apply w-full;
     input {
-      @apply w-[24rem];
+      @apply w-full;
+
+      @screen lg {
+        @apply w-[24rem];
+      }
     }
   }
 }

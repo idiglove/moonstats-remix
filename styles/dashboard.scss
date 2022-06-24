@@ -1,8 +1,12 @@
 .dashboard {
   @apply flex;
-  @apply w-full;
-  @apply h-auto;
+  @apply flex-col;
   @apply bg-dark-primary;
+
+  @screen lg {
+    @apply w-full;
+    @apply h-auto;
+  }
 
   .pnl-wrapper {
     @apply min-w-[56.25rem]; // 900px
@@ -112,20 +116,28 @@
 }
 
 .sidebar-wrapper {
-  @apply h-screen;
-  @apply fixed;
-  width: 15%;
-  height: 100%;
+  @apply h-[5rem];
+  @apply w-full;
   @apply bg-dark-secondary;
   @apply p-4;
-  @apply pl-8;
 
   h1 {
     @apply text-4xl;
-    @apply mt-10;
+
+    @screen lg {
+      @apply mt-10;
+    }
   }
 
-  ul {
-    @apply mt-6;
+  @screen lg {
+    @apply h-screen;
+    @apply fixed;
+    width: 15%;
+    height: 100%;
+    @apply pl-8;
+  
+    ul {
+      @apply mt-6;
+    }
   }
 }
