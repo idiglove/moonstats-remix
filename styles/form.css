@@ -26,5 +26,11 @@ form .input-error {
   @apply block;
   @apply text-red-600;
 }
+form .below-submit-link {
+  @apply block;
+  @apply text-teal-primary;
+  @apply underline;
+  @apply mt-4;
+}
 
 /*# sourceMappingURL=form.css.map */

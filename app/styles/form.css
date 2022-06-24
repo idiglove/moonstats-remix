@@ -30,5 +30,13 @@ form .input-error {
     --tw-text-opacity: 1;
     color: rgb(220 38 38 / var(--tw-text-opacity))
 }
+form .below-submit-link {
+    display: block;
+    --tw-text-opacity: 1;
+    color: rgb(0 198 189 / var(--tw-text-opacity));
+    -webkit-text-decoration-line: underline;
+            text-decoration-line: underline;
+    margin-top: 1rem
+}
 
 /*# sourceMappingURL=form.css.map */

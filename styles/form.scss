@@ -30,4 +30,11 @@ form {
     @apply block;
     @apply text-red-600;
   }
+
+  .below-submit-link {
+    @apply block;
+    @apply text-teal-primary;
+    @apply underline;
+    @apply mt-4;
+  }
 }
