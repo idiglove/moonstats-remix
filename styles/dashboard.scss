@@ -19,8 +19,12 @@
     }
 
     .pnl-line-chart-wrapper {
-      @apply w-full;
-      @apply h-[352px];
+      @apply h-[300px];
+
+      @screen lg {
+        @apply w-full;
+        @apply h-[352px];
+      }
       @apply bg-gray-primary;
       @apply mt-6;
       @apply rounded-xl;
@@ -139,8 +143,10 @@
   
     h1 {
       @apply text-4xl;
+      @apply mb-4;
   
       @screen lg {
+        @apply mb-0;
         @apply mt-10;
       }
     }
@@ -148,6 +154,7 @@
     ul {
       @apply flex;
       @apply gap-4;
+      @apply mb-4;
     }
   
     @screen lg {

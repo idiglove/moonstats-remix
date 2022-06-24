@@ -21,11 +21,16 @@
   }
 }
 .dashboard .pnl-wrapper .pnl-line-chart-wrapper {
-  @apply w-full;
-  @apply h-[352px];
+  @apply h-[300px];
   @apply bg-gray-primary;
   @apply mt-6;
   @apply rounded-xl;
+}
+@screen lg {
+  .dashboard .pnl-wrapper .pnl-line-chart-wrapper {
+    @apply w-full;
+    @apply h-[352px];
+  }
 }
 .dashboard .pnl-wrapper .pnl-line-chart-wrapper canvas {
   @apply p-4;
@@ -125,15 +130,18 @@
 }
 .dashboard .sidebar-wrapper h1 {
   @apply text-4xl;
+  @apply mb-4;
 }
 @screen lg {
   .dashboard .sidebar-wrapper h1 {
+    @apply mb-0;
     @apply mt-10;
   }
 }
 .dashboard .sidebar-wrapper ul {
   @apply flex;
   @apply gap-4;
+  @apply mb-4;
 }
 @screen lg {
   .dashboard .sidebar-wrapper {

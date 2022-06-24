@@ -10,7 +10,7 @@ import {
 } from 'chart.js'
 import type { FunctionComponent } from 'react'
 import { Line } from 'react-chartjs-2'
-import type { IPnl, ISpotOrder } from '~/types/coin.types'
+import type { ISpotOrder } from '~/types/coin.types'
 
 ChartJS.register(
   CategoryScale,
@@ -33,9 +33,7 @@ export const options = {
       text: 'Spot Order Activity',
     },
   },
-  options: {
-    maintainAspectRatio: false,
-  },
+  maintainAspectRatio: false,
 }
 
 export const data = (spotOrdersByDate: SpotOrdersByDate[]) => {
@@ -85,7 +83,7 @@ const PnlLineChart: FunctionComponent<Props> = ({ spotOrdersByDate }) => {
   return (
     <div
       className="pnl-line-chart-wrapper"
-      style={{ height: '352px', width: '100%' }}
+      // style={{ height: '352px', width: '100%' }}
     >
       <Line options={options} data={dataset} width="900" height="340" />
     </div>
