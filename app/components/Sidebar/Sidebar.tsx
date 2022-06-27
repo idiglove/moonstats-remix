@@ -16,6 +16,7 @@ const Sidebar: FunctionComponent<Props> = ({ user }) => {
           </form>
         </>
       )}
+      <h6>Built on Remix.run and Linode - For Hashnode hackathon</h6>
     </div>
   )
 }

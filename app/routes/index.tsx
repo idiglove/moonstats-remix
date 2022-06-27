@@ -1,4 +1,4 @@
-import type { LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import type { ActionFunction } from '@remix-run/node'
@@ -15,6 +15,13 @@ export const links = () => [
   { rel: 'stylesheet', href: rootStyles },
   { rel: 'stylesheet', href: formStyles },
 ]
+
+export const meta: MetaFunction = () => ({
+  charset: 'utf-8',
+  title: 'Moon Stats - Login',
+  description: 'Exciting Crypto PNL Tracker',
+  viewport: 'width=device-width,initial-scale=1',
+})
 
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))

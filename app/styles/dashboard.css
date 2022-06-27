@@ -155,6 +155,9 @@
   gap: 1rem;
   margin-bottom: 1rem;
 }
+.dashboard .sidebar-wrapper form {
+  margin-bottom: 1rem;
+}
 @media (min-width: 1024px) {
   .dashboard .sidebar-wrapper {
     height: 100vh;
@@ -166,6 +169,12 @@
   .dashboard .sidebar-wrapper ul {
     flex-direction: column;
     margin-top: 1.5rem;
+  }
+  .dashboard .sidebar-wrapper h6 {
+    position: absolute;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    bottom: 1rem;
   }
 }
 

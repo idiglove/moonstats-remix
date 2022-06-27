@@ -1,13 +1,12 @@
-import type { LoaderFunction } from '@remix-run/node'
+import type { LoaderFunction, MetaFunction } from '@remix-run/node'
 import { redirect } from '@remix-run/node'
-import { json } from '@remix-run/node'
 import type { ActionFunction } from '@remix-run/node'
 
 import styles from './../styles/dashboard.css'
 import rootStyles from './../styles/root.css'
 import formStyles from './../styles/form.css'
 import Sidebar from './../components/Sidebar/Sidebar'
-import { getSession, commitSession } from './../utils/sessions'
+import { getSession } from './../utils/sessions'
 import SignupForm from '~/components/SignupForm/SignupForm'
 
 export const links = () => [
@@ -15,6 +14,13 @@ export const links = () => [
   { rel: 'stylesheet', href: rootStyles },
   { rel: 'stylesheet', href: formStyles },
 ]
+
+export const meta: MetaFunction = () => ({
+  charset: 'utf-8',
+  title: 'Moon Stats - Signup',
+  description: 'Exciting Crypto PNL Tracker',
+  viewport: 'width=device-width,initial-scale=1',
+})
 
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))

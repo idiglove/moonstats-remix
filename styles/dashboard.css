@@ -143,6 +143,9 @@
   @apply gap-4;
   @apply mb-4;
 }
+.dashboard .sidebar-wrapper form {
+  @apply mb-4;
+}
 @screen lg {
   .dashboard .sidebar-wrapper {
     @apply h-screen;
@@ -154,6 +157,11 @@
   .dashboard .sidebar-wrapper ul {
     @apply flex-col;
     @apply mt-6;
+  }
+  .dashboard .sidebar-wrapper h6 {
+    @apply absolute;
+    @apply text-sm;
+    @apply bottom-4;
   }
 }
 

@@ -1,4 +1,4 @@
-import type { LoaderFunction} from '@remix-run/node';
+import type { LoaderFunction, MetaFunction} from '@remix-run/node';
 import { redirect } from '@remix-run/node'
 import { Outlet, useLoaderData, Link } from '@remix-run/react'
 
@@ -7,6 +7,13 @@ import type { HeaderColumnData } from '~/components/HeaderColumn/types'
 import PnlHeaders from '~/components/PnlHeaders/PnlHeaders'
 import PnlLineChart from '~/components/PnlLineChart/PnlLineChart'
 import { getSession } from './../../utils/sessions'
+
+export const meta: MetaFunction = () => ({
+  charset: 'utf-8',
+  title: 'Moon Stats - PNL Dashboard',
+  description: 'Exciting Crypto PNL Tracker',
+  viewport: 'width=device-width,initial-scale=1',
+})
 
 export const loader: LoaderFunction = async ({ request }) => {
   const session = await getSession(request.headers.get('Cookie'))
