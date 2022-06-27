@@ -50,7 +50,6 @@ export const action: ActionFunction = async ({ request }) => {
 export default function AddOrder() {
   const navigate = useNavigate()
   let [isOpen, setIsOpen] = useState(true)
-  const data = useActionData()
 
   function closeModal() {
     setIsOpen(false)

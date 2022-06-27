@@ -44,7 +44,6 @@ const GainersLosers: FunctionComponent<Props> = ({ data, layoutId }) => {
 type Props = {
   data: {
     gainersLosers: ICoin[]
-    allCoins: ICoin[]
     pnlObj: IPnl
   }
   layoutId: string

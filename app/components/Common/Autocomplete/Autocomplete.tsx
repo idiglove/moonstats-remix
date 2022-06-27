@@ -84,7 +84,6 @@ const Autocomplete = ({ data, field, secondaryField, setQuery }: Props) => {
                               active ? 'text-white' : 'text-teal-600'
                             }`}
                           >
-                            {/* <CheckIcon className="h-5 w-5" aria-hidden="true" /> */}
                           </span>
                         ) : null}
                       </>

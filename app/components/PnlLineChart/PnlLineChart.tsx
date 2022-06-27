@@ -83,7 +83,6 @@ const PnlLineChart: FunctionComponent<Props> = ({ spotOrdersByDate }) => {
   return (
     <div
       className="pnl-line-chart-wrapper"
-      // style={{ height: '352px', width: '100%' }}
     >
       <Line options={options} data={dataset} width="900" height="340" />
     </div>

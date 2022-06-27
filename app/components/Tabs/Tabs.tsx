@@ -9,7 +9,6 @@ const Tabs: FunctionComponent<Props> = ({
   setSelected,
   selected,
 }) => {
-  // const [selected, setSelected] = useState(0)
   return (
     <div className="tabs">
       {contentList.map((content, i) => {
