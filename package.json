@@ -2,7 +2,7 @@
   "private": true,
   "sideEffects": false,
   "scripts": {
-    "build": "npm run build:css && remix build",
+    "build": "npm run css:build && remix build",
     "dev": "npm run sass && concurrently \"npm run sass:watch\" \"npm run postcss:watch\" \"PORT=3005 remix dev\"",
     "start": "remix-serve build",
     "sass": "sass styles && npm run css:build",
