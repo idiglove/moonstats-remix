@@ -10,6 +10,8 @@ import Button from '~/components/Common/Button/Button'
 import Dropdown from '~/components/Common/Dropdown/Dropdown'
 import SymbolAutocomplete from '~/components/SymbolAutocomplete/SymbolAutocomplete'
 import { typeDropdown } from '~/constants/typeDropdown'
+import toast from 'react-hot-toast';
+import { getSession } from '~/utils/sessions'
 
 export const validator = withZod(
   z.object({
@@ -28,14 +30,17 @@ export const action: ActionFunction = async ({ request }) => {
   const values = Object.fromEntries(formData)
   const symbolObj = JSON.parse(values?.symbol as string)
 
-  await fetch(`${process.env.API_URL}/spot-order`, {
+  const session = await getSession(request.headers.get('Cookie'))
+  const user = session.get('user')
+
+  const fetched = await fetch(`${process.env.API_URL}/spot-order`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      userId: 'test',
+      userId: user?.id,
       symbolPair: `${symbolObj?.symbol.toUpperCase()}-USDT`,
       coinId: symbolObj?.id ?? '',
       type: values.type,
@@ -44,12 +49,21 @@ export const action: ActionFunction = async ({ request }) => {
     }),
   })
 
-  return null
+  const res = await fetched?.json()
+
+  return { res }
 }
 
 export default function AddOrder() {
   const navigate = useNavigate()
-  let [isOpen, setIsOpen] = useState(true)
+  const [isOpen, setIsOpen] = useState(true)
+  const [toasted, setToasted] = useState(false)
+  const actionData = useActionData()
+
+  if (actionData?.res?.spotOrder && !toasted) {
+    toast('Your Order has been added!')
+    setToasted(true)
+  }
 
   function closeModal() {
     setIsOpen(false)
@@ -115,7 +129,7 @@ export default function AddOrder() {
                       type="number"
                       step="any"
                     />
-                    <Button buttonLabel="Submit" />
+                    <Button buttonLabel="Submit" onClick={() => setToasted(false)} />
                   </ValidatedForm>
                 </Dialog.Panel>
               </Transition.Child>

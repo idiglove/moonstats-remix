@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react'
+import { Toaster } from 'react-hot-toast'
 import styles from './styles/app.css'
 import formStyles from './styles/form.css'
 
@@ -44,6 +45,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
+        <Toaster />
         {process.env.NODE_ENV !== 'production' && <LiveReload />}
       </body>
     </html>
